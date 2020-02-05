@@ -1,0 +1,91 @@
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .calendar {
+        margin: 15px;
+        border: 1px solid #000;
+        width: 500px;
+        height: 600px;
+        /* position: relative; */
+        overflow: hidden;
+    }
+
+    .head {
+        height: 50px;
+    }
+
+    .YearMon {
+        margin: 10px;
+    }
+
+    .buttons {
+        /* position: absolute; */
+        top: 8px;
+        right: 10px;
+    }
+    /* .button {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+} */
+
+    .day {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        margin-top: 5px;
+        margin-left: 2px;
+        padding: 0 1px;
+        border: 1px solid transparent;
+        margin-right: 50px;
+        text-align: center;
+        cursor: pointer;
+        transition: background .1s, color .1s;
+    }
+
+    .day:hover {
+        border: 1px solid #000;
+        color: #fff;
+        background: lightcoral;
+    }
+
+    .day.today {
+        border: 1px solid #000;
+        color: #fff;
+        background: plum;
+    }
+
+    .day.week {
+        color: red;
+    }
+
+    .day.other {
+        visibility: hidden;
+    }
+
+    .DaysWeek {
+        display: flex;
+        background: #ddd;
+        border-bottom: 1px solid #999;
+        border-top: 1px solid #999;
+        margin-right: -9px;
+    }
+
+    .Dates {
+        margin-right: -9px;
+    }
+
+    .DaysWeek div {
+        width: 20px;
+        height: 20px;
+        padding: 0 1px;
+        margin: 3px;
+        margin-right: 50px;
+        font-size: 14px;
+        line-height: 20px;
+    }
