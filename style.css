@@ -3,89 +3,101 @@
         margin: 0;
         padding: 0;
     }
-
+    
+    .container {
+        display: flex;
+    }
+    
     .calendar {
-        margin: 15px;
-        border: 1px solid #000;
-        width: 500px;
-        height: 600px;
+        margin-left: 30px;
+        margin-top: 50px;
+        border: 2px solid blue;
+        width: 700px;
+        height: 500px;
         /* position: relative; */
         overflow: hidden;
     }
-
+    
     .head {
         height: 50px;
     }
-
-    .YearMon {
-        margin: 10px;
+    
+    .yearMon {
+        margin-left: 300px;
     }
-
+    
     .buttons {
-        /* position: absolute; */
-        top: 8px;
-        right: 10px;
+        display: flex;
+        justify-content: space-around;
     }
-    /* .button {
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-} */
-
+    
+    #prev {
+        background: transparent;
+        outline: none;
+        border: 0;
+    }
+    
+    #next {
+        background: transparent;
+        outline: none;
+        border: 0;
+    }
+    
     .day {
         display: inline-block;
-        width: 20px;
-        height: 20px;
-        line-height: 20px;
-        margin-top: 5px;
-        margin-left: 2px;
-        padding: 0 1px;
-        border: 1px solid transparent;
-        margin-right: 50px;
         text-align: center;
-        cursor: pointer;
+        padding: 20px;
+        width: 70px;
+        height: 70px;
+        /* line-height: 20px; */
+        margin-top: 3px;
+        border: 1px solid transparent;
+        margin-right: 21px;
         transition: background .1s, color .1s;
     }
-
+    
     .day:hover {
         border: 1px solid #000;
         color: #fff;
-        background: lightcoral;
+        background: #3399FF;
+        text-align: center;
     }
-
+    
     .day.today {
         border: 1px solid #000;
         color: #fff;
         background: plum;
     }
-
+    
     .day.week {
         color: red;
     }
-
+    
     .day.other {
+        margin-top: 3px;
         visibility: hidden;
     }
-
+    
     .DaysWeek {
         display: flex;
-        background: #ddd;
-        border-bottom: 1px solid #999;
-        border-top: 1px solid #999;
-        margin-right: -9px;
+        background: #99CCFF;
+        border-bottom: 1px solid blue;
+        border-top: 1px solid blue;
     }
-
-    .Dates {
-        margin-right: -9px;
-    }
-
+    
     .DaysWeek div {
-        width: 20px;
-        height: 20px;
-        padding: 0 1px;
+        width: 30px;
+        height: 30px;
+        padding: 8px;
         margin: 3px;
-        margin-right: 50px;
+        margin-right: 30px;
+        margin-left: 30px;
         font-size: 14px;
         line-height: 20px;
+    }
+    
+    .checkList {
+        display: none;
+        margin-top: 50px;
+        margin-left: 30px;
     }
