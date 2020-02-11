@@ -1,103 +1,37 @@
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .container {
-        display: flex;
-    }
-    
-    .calendar {
-        margin-left: 30px;
-        margin-top: 50px;
-        border: 2px solid blue;
-        width: 700px;
-        height: 500px;
-        /* position: relative; */
-        overflow: hidden;
-    }
-    
-    .head {
-        height: 50px;
-    }
-    
-    .yearMon {
-        margin-left: 300px;
-    }
-    
-    .buttons {
-        display: flex;
-        justify-content: space-around;
-    }
-    
-    #prev {
-        background: transparent;
-        outline: none;
-        border: 0;
-    }
-    
-    #next {
-        background: transparent;
-        outline: none;
-        border: 0;
-    }
-    
-    .day {
-        display: inline-block;
-        text-align: center;
-        padding: 20px;
-        width: 70px;
-        height: 70px;
-        /* line-height: 20px; */
-        margin-top: 3px;
-        border: 1px solid transparent;
-        margin-right: 21px;
-        transition: background .1s, color .1s;
-    }
-    
-    .day:hover {
-        border: 1px solid #000;
-        color: #fff;
-        background: #3399FF;
-        text-align: center;
-    }
-    
-    .day.today {
-        border: 1px solid #000;
-        color: #fff;
-        background: plum;
-    }
-    
-    .day.week {
-        color: red;
-    }
-    
-    .day.other {
-        margin-top: 3px;
-        visibility: hidden;
-    }
-    
-    .DaysWeek {
-        display: flex;
-        background: #99CCFF;
-        border-bottom: 1px solid blue;
-        border-top: 1px solid blue;
-    }
-    
-    .DaysWeek div {
-        width: 30px;
-        height: 30px;
-        padding: 8px;
-        margin: 3px;
-        margin-right: 30px;
-        margin-left: 30px;
-        font-size: 14px;
-        line-height: 20px;
-    }
-    
-    .checkList {
-        display: none;
-        margin-top: 50px;
-        margin-left: 30px;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 700px;
+    height: 500px;
+    border: 1px solid lightblue;
+}
+
+
+/* .Dates {
+    display: flex;
+} */
+
+.DaysWeek {
+    display: flex;
+}
+
+.whatDay {
+    width: 20px;
+    height: 20px;
+    margin-left: 80px;
+}
+
+.week {
+    display: flex;
+}
+
+.days {
+    background-color: blueviolet;
+    width: 20px;
+    height: 20px;
+    margin-left: 30px;
+}

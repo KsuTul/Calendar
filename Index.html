@@ -6,38 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
     <div class="container">
-        <div class="calendar">
-            <div class="head">
-                <div class="yearMon"> </div>
-                <div class="buttons">
-                    <button id="prev"><---</button>
-                    <button id="next">---></button>
+        <div class="row">
+            <div class="col-12">
+                <div id="monthYear"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div id="arrowPrevMonth" style="cursor: pointer;">предыдущий месяц</div>
+            </div>
+            <div class="col-6">
+                <div id="arrowNextMonth" style="cursor: pointer;">следующий месяц</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="DaysWeek">
+                    <div class="whatDay">Пн</div>
+                    <div class="whatDay">Вт</div>
+                    <div class="whatDay">Ср</div>
+                    <div class="whatDay">Чт</div>
+                    <div class="whatDay">Пт</div>
+                    <div class="whatDay">Сб</div>
+                    <div class="whatDay">Вс</div>
                 </div>
             </div>
-            <div class="DaysWeek">
-                <div>Пн</div>
-                <div>Вт</div>
-                <div>Ср</div>
-                <div>Чт</div>
-                <div>Пт</div>
-                <div>Сб</div>
-                <div>Вс</div>
+        </div>
+        <!-- <div class="row"></div> -->
+        <div class="Dates">
+            <div class="row">
+                <div class=" col-12 week d-flex ">
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                </div>
             </div>
-            <div class="Dates">
+            <div class="row">
+                <div class="col-12 week d-flex">
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 week d-flex">
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 week d-flex">
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 week d-flex">
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
+                    <div class="days"></div>
 
+                </div>
             </div>
         </div>
-        <div class="checkList">
 
-        </div>
+        <script src="script.js">
+        </script>
     </div>
-    <script src="script.js">
-    </script>
+
+
 </body>
 
 </html>

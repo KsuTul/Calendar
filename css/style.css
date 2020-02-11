@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 700px;
+    height: 500px;
+    border: 1px solid lightblue;
+}
+
+
+/* .Dates {
+    display: flex;
+} */
+
+.DaysWeek {
+    display: flex;
+}
+
+.whatDay {
+    width: 15px;
+    height: 20px;
+    padding-right: 45px;
+    padding-left: 45px;
+}
+
+.week {
+    display: flex;
+}
+
+.days {
+    /* background-color: blueviolet; */
+    width: 50px;
+    height: 50px;
+    margin-right: 21px;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-top: 10px;
+    text-align: center;
+    transition: background .1s, color .1s;
+}
+
+.days:hover {
+    border: 1px solid #000;
+    color: #fff;
+    background: #3399FF;
+}
+
+
+/* .days.today {
+    border: 1px solid #000;
+    color: #fff;
+    background: plum;
+} */
+
+
+/* .days.weekend {
+    color: red;
+} */
