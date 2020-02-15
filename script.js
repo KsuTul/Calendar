@@ -1,5 +1,4 @@
 let container = document.querySelector(".container");
-
 let row = document.createElement("div");
 container.append(row);
 row.classList.add('row');
@@ -10,9 +9,15 @@ for (i = 1; i <= 6; i++) {
     for (j = 1; j < 8; j++) {
         let days = document.createElement("div");
         week.append(days);
+
         days.classList.add('days');
 
-        days.addEventListener("click", createForm);
+        days.addEventListener("click", function() {
+            let check = document.getElementById(this.id);
+            console.log(check);
+            createForm();
+        });
+
     }
 }
 let dates = document.querySelector(".Dates");
@@ -41,7 +46,7 @@ function monthList(beg, from, to, parent) {
     for (i = from; i <= to && j < parent.length; j++, i++) {
 
         parent[j].innerHTML = i;
-
+        parent[j].id = i
 
         // if (i == date.getDate() && date.getMonth() == currentMonth) {
         //     parent[j].classList.add('today');
@@ -97,15 +102,10 @@ function changeMonth(parent) {
     })
 
 }
-let tasks = [];
-let daytask;
 
-function createForm() {
-    // let tasks=[];
-    this.classList.add("check");
-    daytask = this.textContent + " " + monthYear.textContent;
+
+function createElem() {
     let taskForm = document.createElement("input");
-
     document.body.append(taskForm);
     taskForm.classList.add("taskForm");
     taskForm.type = "text";
@@ -114,27 +114,60 @@ function createForm() {
     document.body.append(button);
     button.classList.add("add");
     button.innerHTML = "Добавить заметку";
-    let taskList = document.createElement("div");
+    let taskList = document.createElement("li");
     taskList.classList.add("taskList");
     document.body.append(taskList);
-    save()
-    console.log(daytask)
+}
+
+function createForm() {
+    let tasks = [];
+    let daytask;
+    createElem();
+
+    daytask = this.textContent + " " + monthYear.textContent;
+    let button = document.querySelector(".add");
+    let taskForm = document.querySelector(".taskForm");
+    let taskList = document.querySelector(".taskList");
+
+    button.addEventListener("click", function() {
+        let temp = {};
+        let t = taskForm.value;
+        temp.toDo = t;
+        temp.data = daytask;
+        let i = tasks.length;
+        tasks[i] = temp;
+        let out = "";
+        for (let key in tasks) {
+            out += tasks[key].toDo;
+        };
+        taskList.innerHTML = out;
+
+    })
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 
-function save() {
-    let taskList = document.querySelector(".taskList");
-    let taskForm = document.querySelector(".taskForm");
-    let button = document.querySelector(".add")
-    button.addEventListener("click", function() {
-        let t = taskForm.value;
-        tasks.push(t)
-        let tList = " ";
-        for (i = 0; i < tasks.length; i++) {
-            tList += tasks[i];
-        }
-        taskList.innerHTML = tList;
-    })
+// function save() {
+//     let taskList = document.querySelector(".taskList");
+//     let taskForm = document.querySelector(".taskForm");
+//     let button = document.querySelector(".add")
+//     button.addEventListener("click", function() {
+//         let t = taskForm.value;
+//         tasks.push(t)
+//         let tList = " ";
+//         for (i = 0; i < tasks.length; i++) {
+//             tList += tasks[i];
+//         }
 
+//         taskList.innerHTML += tList;
+//     })
+
+
+// }
+class DateList {
+    constructor(data, arraytask) {
+        this.data = data,
+            this.arraytask = arraytask;
+    }
 
 }
