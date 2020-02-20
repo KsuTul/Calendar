@@ -48,6 +48,10 @@
     background: #3399FF;
 }
 
+.checkList {
+    display: none;
+}
+
 
 /* .days.today {
     border: 1px solid #000;
@@ -59,3 +63,7 @@
 /* .days.weekend {
     color: red;
 } */
+
+.taskList {
+    display: flex;
+}

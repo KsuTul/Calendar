@@ -1,5 +1,7 @@
 let container = document.querySelector(".container");
 let row = document.createElement("div");
+
+//создание элементов div,в которые затем будем помещать числа
 container.append(row);
 row.classList.add('row');
 for (i = 1; i <= 6; i++) {
@@ -9,17 +11,10 @@ for (i = 1; i <= 6; i++) {
     for (j = 1; j < 8; j++) {
         let days = document.createElement("div");
         week.append(days);
-
         days.classList.add('days');
-
-        days.addEventListener("click", function() {
-            let check = document.getElementById(this.id);
-            console.log(check);
-            createForm();
-        });
-
     }
 }
+//объявление переменных
 let dates = document.querySelector(".Dates");
 let days = document.querySelectorAll(".days");
 let week = document.querySelector(".week")
@@ -32,8 +27,18 @@ let currentYear = date.getFullYear(); //текущий год
 let currentMonth = date.getMonth(); //текущий месяц
 let startDay = new Date(currentYear, currentMonth, 1).getDay(); //день недели первого дня месяца
 let months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+// Вызов функции, которая генерирует дни недели и числа
 monthList(startDay, 1, monthFullDays.getDate(), days)
 
+//генерация уникального id
+function addUniqueIdCell(date, num, elem) {
+    let dateBeta = new Date();
+    dateBeta.setMonth(date.getMonth());
+    dateBeta.setFullYear(date.getFullYear());
+    dateBeta.setDate(num);
+    elem.id = 'days' + " " + dateBeta.getFullYear() + '_' + (dateBeta.getMonth()) + '_' + (dateBeta.getDate());
+}
+// функция,которая генерирует дни недели и числа
 function monthList(beg, from, to, parent) {
     let j;
     if (beg === 0) {
@@ -41,16 +46,16 @@ function monthList(beg, from, to, parent) {
     }
     for (k = 1, j = 0; k < beg && j < parent.length; j++, k++) {
         parent[j].innerHTML += " ";
-        // parent[j].classList.add('other');
     }
     for (i = from; i <= to && j < parent.length; j++, i++) {
 
         parent[j].innerHTML = i;
-        parent[j].id = i
-
-        // if (i == date.getDate() && date.getMonth() == currentMonth) {
-        //     parent[j].classList.add('today');
-        // }
+        // click();
+        addUniqueIdCell(date, i, parent[j]); //присуждение уникального id
+        activateChecklistToDayCell(parent[j]) //вызов функции, которая вешает обработчик на дату
+            // if (i == date.getDate() && date.getMonth() == currentMonth) {
+            //     parent[j].classList.add('today');
+            // }
 
         // if (weekends(i)) parent[j].classList.add('weekend');
     }
@@ -64,10 +69,11 @@ function monthList(beg, from, to, parent) {
 //     return todayDay == 0 || todayDay == 6;
 // }
 
-changeMonth(days)
+changeMonth(days) //вызов функции, которая сменяет месяца и года
 
 function changeMonth(parent) {
     monthYear.innerHTML = months[currentMonth] + ' ' + currentYear;
+    //на сдедующие месяца
     nextMonth.addEventListener('click', function() {
         for (i = 0; i < days.length; i++) {
             parent[i].innerHTML = " "; // Вызов myNodeList.item(i) необязателен в JavaScript
@@ -84,10 +90,12 @@ function changeMonth(parent) {
         monthList(newMonBeg, 1, currentMonthDaysNum.getDate(), days)
 
     });
+
+    //на предыдущие месяца
     prevMonth.addEventListener('click', function() {
         for (var i = 0; i < days.length; i++) {
-            days[i].innerHTML = " "; // Вызов myNodeList.item(i) необязателен в JavaScript
-        } // to clear parent and insert new month days
+            days[i].innerHTML = " ";
+        }
 
         if (currentMonth == 0) {
             currentMonth = months.length;
@@ -103,71 +111,98 @@ function changeMonth(parent) {
 
 }
 
+// показывает скрытые органайзеры
+function showChecklistToDayCell(elem) {
+    // hideAllChecklist();
+    document.getElementById('ul' + elem.id).style.display = 'block';
 
-function createElem() {
-    let taskForm = document.createElement("input");
-    document.body.append(taskForm);
-    taskForm.classList.add("taskForm");
-    taskForm.type = "text";
-    taskForm.placeholder = "Введите дело";
-    let button = document.createElement("button");
-    document.body.append(button);
-    button.classList.add("add");
-    button.innerHTML = "Добавить заметку";
-    let taskList = document.createElement("li");
-    taskList.classList.add("taskList");
-    document.body.append(taskList);
+
+
+    // localStorage.getItem(str) = taskList.innerHTML;
+    // save(daytask)
 }
 
-function createForm() {
-    let tasks = [];
-    let daytask;
-    createElem();
+// прячет ранее открытые органайзеры
+function hideAllChecklist() {
+    let checklistUls = document.querySelectorAll('.checklistUl');
+    let button = document.querySelectorAll('.add');
+    for (i = 0; i < checklistUls.length; i++) {
+        checklistUls[i].style.display = 'none';
 
-    daytask = this.textContent + " " + monthYear.textContent;
-    let button = document.querySelector(".add");
-    let taskForm = document.querySelector(".taskForm");
-    let taskList = document.querySelector(".taskList");
-
-    button.addEventListener("click", function() {
-        let temp = {};
-        let t = taskForm.value;
-        temp.toDo = t;
-        temp.data = daytask;
-        let i = tasks.length;
-        tasks[i] = temp;
-        let out = "";
-        for (let key in tasks) {
-            out += tasks[key].toDo;
-        };
-        taskList.innerHTML = out;
-
-    })
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-
-// function save() {
-//     let taskList = document.querySelector(".taskList");
-//     let taskForm = document.querySelector(".taskForm");
-//     let button = document.querySelector(".add")
-//     button.addEventListener("click", function() {
-//         let t = taskForm.value;
-//         tasks.push(t)
-//         let tList = " ";
-//         for (i = 0; i < tasks.length; i++) {
-//             tList += tasks[i];
-//         }
-
-//         taskList.innerHTML += tList;
-//     })
-
-
-// }
-class DateList {
-    constructor(data, arraytask) {
-        this.data = data,
-            this.arraytask = arraytask;
     }
+
+}
+
+function checklistStartUnique(elem) {
+    hideAllChecklist();
+    let tasks = [];
+    let checklistContainer = document.querySelector('#checklistContainer');
+    let ul = document.createElement('ul');
+    ul.id = 'ul' + elem.id;
+    ul.className = 'checklistUl';
+    ul.style.display = 'block';
+    let input = document.createElement('input');
+    input.type = ' text';
+    let add = document.createElement("button");
+    ul.append(add);
+    add.classList.add("add");
+    add.innerHTML = "Добавить заметку";
+
+    input.addEventListener('keyup', function(event) {
+        if (event.keyCode == 13) {
+            addLi(input, ul, tasks, elem);
+            input.textContent = "";
+        }
+    });
+    add.addEventListener("click", function() {
+
+        addLi(input, ul, tasks, elem);
+        input.textContent = "";
+    })
+
+    ul.appendChild(input);
+    checklistContainer.appendChild(ul);
+
+}
+let map = new Map();
+
+function addLi(input, ul, tasks, elem) {
+    let taskList = document.createElement("li");
+    taskList.classList.add("li")
+    let str = elem.id;
+    ul.append(taskList);
+    let task = input.value;
+    tasks.push(task);
+    let out = ' '
+    for (i = 0; i < tasks.length; i++) {
+        out = tasks[i];
+    }
+    taskList.innerHTML = out;
+    save(elem)
+    localStorage[str] = tasks;
+
+}
+
+
+function save(elem) {
+    let str = elem.id;
+    console.log(str);
+}
+
+
+
+function activateChecklistToDayCell(elem) {
+    elem.addEventListener('click', function() {
+        // let str = elem.id;
+        // console.log(str);
+        let checklist = document.getElementById('ul' + elem.id);
+        // localStorage['str'];
+        if (!checklist) {
+            checklistStartUnique(elem);
+        } else {
+
+            showChecklistToDayCell(elem);
+        }
+    });
 
 }
