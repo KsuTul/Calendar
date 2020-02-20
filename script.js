@@ -13,8 +13,7 @@ for (i = 1; i <= 6; i++) {
         week.append(days);
         days.classList.add('days');
     }
-}
-//объявление переменных
+} //объявление переменных
 let dates = document.querySelector(".Dates");
 let days = document.querySelectorAll(".days");
 let week = document.querySelector(".week")
@@ -32,7 +31,51 @@ let months = ['январь', 'февраль', 'март', 'апрель', 'м�
 // Вызов функции, которая генерирует дни недели и числа
 monthList(startDay, 1, monthFullDays.getDate(), days)
 
-//генерация уникального id
+function monthColor() {
+    switch (month.innerHTML) {
+        case "февраль":
+            container.style.background = "	rgba(102,0,204,0.3)";
+            break;
+        case "март":
+            container.style.background = "rgba(102,255,102,0.5)";
+            break;
+        case "апрель":
+            container.style.background = "rgba(102,255,0,0.5)";
+            break;
+        case "май":
+            container.style.background = "	rgba(204,255,0,0.5)";
+            break;
+        case "июнь":
+            container.style.background = "	rgba(255,153,51,0.5)";
+            break;
+        case "июль":
+            container.style.background = "rgba(255,102,0,0.8)";
+            break;
+        case "август":
+            container.style.background = "rgba(204,102,0,0.7)";
+            break;
+        case "сентябрь":
+            container.style.background = "rgba(153,51,0,0.5)";
+            break;
+        case "октябрь":
+            container.style.background = "rgba(153,0,0,0.5)";
+            break;
+        case "ноябрь":
+            container.style.background = "rgba(255,204,255,0.8)";
+            break;
+        case "декабрь":
+            container.style.background = "	rgba(204,0,204,0.3)";
+            break;
+        case "январь":
+            container.style.background = "rgba(153,0,204,0.5)	";
+            break;
+    }
+}
+monthColor();
+if (currentMonth) {
+    container.style.background = "	rgba(102,0,204,0.3)";
+}
+
 function addUniqueIdCell(date, num, elem) {
     let dateBeta = new Date();
     dateBeta.setMonth(date.getMonth());
@@ -49,28 +92,28 @@ function monthList(beg, from, to, parent) {
     }
     for (k = 1, j = 0; k < beg && j < parent.length; j++, k++) {
         parent[j].innerHTML += " ";
+        parent[j].classList.add("other");
+        parent[j].addEventListener("click", function() {
+            hideAllChecklist();
+        })
     }
     for (i = from; i <= to && j < parent.length; j++, i++) {
 
         parent[j].innerHTML = i;
-        if (i == currentDay) {
-            parent[j].style.color = "green";
-        }
+
         addUniqueIdCell(date, i, parent[j]); //присуждение уникального id
         activateChecklistToDayCell(parent[j]) //вызов функции, которая вешает обработчик на дату
-
-
-        // if (weekends(i)) parent[j].classList.add('weekend');
+        if (weekends(i)) parent[j].color = "pink";
     }
 
 }
 
 
-// function weekends(i) {
-//     let currentDay = new Date(date.getFullYear(), date.getMonth(), i);
-//     let todayDay = currentDay.getDay();
-//     return todayDay == 0 || todayDay == 6;
-// }
+function weekends(i) {
+    let currentDay = new Date(date.getFullYear(), date.getMonth(), i);
+    let todayDay = currentDay.getDay();
+    return todayDay == 0 || todayDay == 6;
+}
 
 changeMonth(days) //вызов функции, которая сменяет месяца и года
 
@@ -82,6 +125,11 @@ function changeMonth(parent) {
     nextMonth.addEventListener('click', function() {
         for (i = 0; i < days.length; i++) {
             parent[i].innerHTML = " ";
+            if (parent[i].innerHTMl = date.getDate()) {
+                parent[i].style.color = "black";
+
+            }
+            parent[i].id = month.innerHTML;
 
         }
         if (currentMonth == months.length - 1) {
@@ -96,45 +144,10 @@ function changeMonth(parent) {
         let newMonBeg = new Date(currentYear, currentMonth, 1).getDay();
         let currentMonthDaysNum = new Date(currentYear, currentMonth + 1, 0);
 
-        monthList(newMonBeg, 1, currentMonthDaysNum.getDate(), days)
-        switch (month.innerHTML) {
-            case "февраль":
-                container.style.background = "	rgba(102,0,204,0.3)";
-                break;
-            case "март":
-                container.style.background = "rgba(102,255,102,0.5)";
-                break;
-            case "апрель":
-                container.style.background = "rgba(102,255,0,0.5)";
-                break;
-            case "май":
-                container.style.background = "	rgba(204,255,0,0.5)";
-                break;
-            case "июнь":
-                container.style.background = "	rgba(255,153,51,0.5)";
-                break;
-            case "июль":
-                container.style.background = "rgba(255,102,0,0.8)";
-                break;
-            case "август":
-                container.style.background = "rgba(204,102,0,0.7)";
-                break;
-            case "сентябрь":
-                container.style.background = "rgba(153,51,0,0.5)";
-                break;
-            case "октябрь":
-                container.style.background = "rgba(153,0,0,0.5)";
-                break;
-            case "ноябрь":
-                container.style.background = "rgba(255,204,255,0.8)";
-                break;
-            case "декабрь":
-                container.style.background = "	rgba(204,0,204,0.3)";
-                break;
-            case "январь":
-                container.style.background = "rgba(153,0,204,0.5)	";
-                break;
-        }
+        monthList(newMonBeg, 1, currentMonthDaysNum.getDate(), days);
+
+
+        monthColor();
     });
 
 
@@ -142,7 +155,7 @@ function changeMonth(parent) {
 
     //на предыдущие месяца
     prevMonth.addEventListener('click', function() {
-        for (var i = 0; i < days.length; i++) {
+        for (i = 0; i < days.length; i++) {
             days[i].innerHTML = " ";
         }
 
@@ -159,58 +172,38 @@ function changeMonth(parent) {
         let currentMonthDaysNum = new Date(currentYear, currentMonth + 1, 0);
 
         monthList(prevMonBeg, 1, currentMonthDaysNum.getDate(), days);
-        switch (month.innerHTML) {
-            case "февраль":
-                container.style.background = "	rgba(102,0,204,0.3)";
-                break;
-            case "март":
-                container.style.background = "rgba(102,255,102,0.5)";
-                break;
-            case "апрель":
-                container.style.background = "rgba(102,255,0,0.5)";
-                break;
-            case "май":
-                container.style.background = "	rgba(204,255,0,0.5)";
-                break;
-            case "июнь":
-                container.style.background = "	rgba(255,153,51,0.5)";
-                break;
-            case "июль":
-                container.style.background = "rgba(255,102,0,0.8)";
-                break;
-            case "август":
-                container.style.background = "rgba(204,102,0,0.7)";
-                break;
-            case "сентябрь":
-                container.style.background = "rgba(153,51,0,0.5)";
-                break;
-            case "октябрь":
-                container.style.background = "rgba(153,0,0,0.5)";
-                break;
-            case "ноябрь":
-                container.style.background = "rgba(255,204,255,0.8)";
-                break;
-            case "декабрь":
-                container.style.background = "	rgba(204,0,204,0.3)";
-                break;
-            case "январь":
-                container.style.background = "rgba(153,0,204,0.5)	";
-                break;
-        }
+
+        monthColor()
     })
 
 }
+
+let otherDay = document.querySelector(".other");
+otherDay.addEventListener("click", function() {
+    hideAllChecklist();
+})
 
 // показывает скрытые органайзеры
 function showChecklistToDayCell(elem) {
     hideAllChecklist();
     document.getElementById('ul' + elem.id).style.display = 'block';
+    let list = document.querySelector('.li');
+    for (let key in localStorage) {
+        if (!localStorage.hasOwnProperty(key)) {
+            continue;
+        } else if (localStorage[key] == list.innerHTML) {
+            alert(localStorage[key])
+        }
+    }
 
 }
+
+
 
 // прячет ранее открытые органайзеры
 function hideAllChecklist() {
     let checklistUls = document.querySelectorAll('.checklistUl');
+
     let button = document.querySelectorAll('.add');
     for (i = 0; i < checklistUls.length; i++) {
         checklistUls[i].style.display = 'none';
@@ -234,8 +227,7 @@ function checklistStartUnique(elem) {
     let add = document.createElement("button");
     ul.append(add);
     add.classList.add("add");
-    add.innerHTML = "Добавить заметку";
-
+    add.innerHTML = "Добавить";
     input.addEventListener('keyup', function(event) {
         if (event.keyCode == 13) {
             addLi(input, ul, tasks, elem);
@@ -266,7 +258,7 @@ function addLi(input, ul, tasks, elem) {
     }
     taskList.innerHTML = out;
     save(elem)
-    localStorage[str] = tasks;
+    localStorage[str] = JSON.stringify(tasks);
 
 }
 
@@ -280,18 +272,24 @@ function save(elem) {
 //нажатие на день
 function activateChecklistToDayCell(elem) {
     elem.addEventListener('click', function() {
-        // let str = elem.id;
+        let str = elem.id;
         // console.log(str);
 
         elem.style.color = "red";
         let checklist = document.getElementById('ul' + elem.id);
         // localStorage['str'];
+
         if (!checklist) {
             checklistStartUnique(elem);
         } else {
 
             showChecklistToDayCell(elem);
+
         }
+
+
+
     });
 
 }
+//

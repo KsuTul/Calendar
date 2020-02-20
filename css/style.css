@@ -14,7 +14,7 @@
         margin-top: 50px;
         width: 700px;
         height: 600px;
-        /* border: 1px solid lightblue; */
+        border: 1px solid lightblue;
     }
     
     .tasks {
@@ -120,5 +120,13 @@
         list-style: none;
         font-family: 'Lobster', cursive;
         font-size: 23px;
-        padding-left: 125px;
+        padding-left: 95px;
+    }
+    
+    .add {
+        background: transparent;
+        margin-left: 15px;
+        border: 0;
+        font-family: 'Lobster', cursive;
+        font-size: 23px;
     }
