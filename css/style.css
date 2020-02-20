@@ -1,69 +1,124 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 700px;
-    height: 500px;
-    border: 1px solid lightblue;
-}
-
-
-/* .Dates {
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        width: 1200px;
+        height: 1000px;
+        background-color: rgba(204, 255, 255, 0.3);
+    }
+    
+    .cal {
+        margin-top: 50px;
+        width: 700px;
+        height: 600px;
+        /* border: 1px solid lightblue; */
+    }
+    
+    .tasks {
+        margin-top: 50px;
+        width: 400px;
+        height: 600px;
+    }
+    
+    .monthYear {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    
+    #month {
+        padding-left: 210px;
+        font-family: 'Lobster', cursive;
+        font-size: 30px;
+    }
+    
+    #year {
+        font-family: 'Lobster', cursive;
+        font-size: 30px;
+    }
+    
+    .button {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    
+    #arrowPrevMonth {
+        padding-left: 100px;
+        font-family: 'Lobster', cursive;
+        font-size: 20px;
+    }
+    
+    #arrowNextMonth {
+        font-family: 'Lobster', cursive;
+        font-size: 20px;
+    }
+    /* .Dates {
     display: flex;
 } */
-
-.DaysWeek {
-    display: flex;
-}
-
-.whatDay {
-    width: 15px;
-    height: 20px;
-    padding-right: 45px;
-    padding-left: 45px;
-}
-
-.week {
-    display: flex;
-}
-
-.days {
-    /* background-color: blueviolet; */
-    width: 50px;
-    height: 50px;
-    margin-right: 21px;
-    margin-left: 20px;
-    margin-top: 20px;
-    padding-top: 10px;
-    text-align: center;
-    transition: background .1s, color .1s;
-}
-
-.days:hover {
-    border: 1px solid #000;
-    color: #fff;
-    background: #3399FF;
-}
-
-.checkList {
-    display: none;
-}
-
-
-/* .days.today {
+    
+    .DaysWeek {
+        display: flex;
+    }
+    
+    .whatDay {
+        width: 15px;
+        height: 20px;
+        padding-right: 45px;
+        padding-left: 45px;
+        font-family: 'Lobster', cursive;
+        font-size: 25px;
+    }
+    
+    .week {
+        display: flex;
+    }
+    
+    .days {
+        /* background-color: blueviolet; */
+        width: 50px;
+        height: 50px;
+        margin-right: 21px;
+        margin-left: 23px;
+        margin-top: 20px;
+        padding-top: 10px;
+        text-align: center;
+        transition: background .1s, color .1s;
+        font-family: 'Lobster', cursive;
+        font-size: 18px;
+    }
+    
+    .days:hover {
+        border: 1px solid #000;
+        color: #fff;
+        background: #3399FF;
+    }
+    
+    .checkList {
+        display: none;
+    }
+    /* .days.today {
     border: 1px solid #000;
     color: #fff;
     background: plum;
 } */
-
-
-/* .days.weekend {
+    /* .days.weekend {
     color: red;
 } */
-
-.taskList {
-    display: flex;
-}
+    
+    .taskList {
+        display: flex;
+    }
+    
+    .checklistUl {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .li {
+        list-style: none;
+        font-family: 'Lobster', cursive;
+        font-size: 23px;
+        padding-left: 125px;
+    }

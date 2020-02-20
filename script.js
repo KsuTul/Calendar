@@ -1,4 +1,4 @@
-let container = document.querySelector(".container");
+let container = document.querySelector(".cal");
 let row = document.createElement("div");
 
 //создание элементов div,в которые затем будем помещать числа
@@ -18,13 +18,15 @@ for (i = 1; i <= 6; i++) {
 let dates = document.querySelector(".Dates");
 let days = document.querySelectorAll(".days");
 let week = document.querySelector(".week")
-let monthYear = document.getElementById('monthYear');
+let month = document.getElementById('month');
+let year = document.getElementById('year');
 let nextMonth = document.getElementById('arrowNextMonth');
 let prevMonth = document.getElementById('arrowPrevMonth');
 let date = new Date();
 let monthFullDays = new Date(date.getFullYear(), date.getMonth() + 1, 0); //последний день месяца
 let currentYear = date.getFullYear(); //текущий год
 let currentMonth = date.getMonth(); //текущий месяц
+
 let startDay = new Date(currentYear, currentMonth, 1).getDay(); //день недели первого дня месяца
 let months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
 // Вызов функции, которая генерирует дни недели и числа
@@ -40,6 +42,7 @@ function addUniqueIdCell(date, num, elem) {
 }
 // функция,которая генерирует дни недели и числа
 function monthList(beg, from, to, parent) {
+    let currentDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     let j;
     if (beg === 0) {
         beg = 7
@@ -50,12 +53,12 @@ function monthList(beg, from, to, parent) {
     for (i = from; i <= to && j < parent.length; j++, i++) {
 
         parent[j].innerHTML = i;
-        // click();
+        if (i == currentDay) {
+            parent[j].style.color = "green";
+        }
         addUniqueIdCell(date, i, parent[j]); //присуждение уникального id
         activateChecklistToDayCell(parent[j]) //вызов функции, которая вешает обработчик на дату
-            // if (i == date.getDate() && date.getMonth() == currentMonth) {
-            //     parent[j].classList.add('today');
-            // }
+
 
         // if (weekends(i)) parent[j].classList.add('weekend');
     }
@@ -72,24 +75,70 @@ function monthList(beg, from, to, parent) {
 changeMonth(days) //вызов функции, которая сменяет месяца и года
 
 function changeMonth(parent) {
-    monthYear.innerHTML = months[currentMonth] + ' ' + currentYear;
+    // monthYear.innerHTML = months[currentMonth] + ' ' + currentYear;
+    month.innerHTML = months[currentMonth];
+    year.innerHTML = currentYear;
     //на сдедующие месяца
     nextMonth.addEventListener('click', function() {
         for (i = 0; i < days.length; i++) {
-            parent[i].innerHTML = " "; // Вызов myNodeList.item(i) необязателен в JavaScript
-        } // to
+            parent[i].innerHTML = " ";
+
+        }
         if (currentMonth == months.length - 1) {
             currentMonth = -1;
-            monthYear.innerHTML = months[currentMonth] + ' ' + currentYear++;
+            month.innerHTML = months[currentMonth];
+            year.innerHTML = currentYear++;
+            // monthYear.innerHTML = months[currentMonth] + ' ' + currentYear++;
         }
-
-        monthYear.innerHTML = months[++currentMonth] + ' ' + currentYear;
+        month.innerHTML = months[++currentMonth];
+        year.innerHTML = currentYear;
+        // monthYear.innerHTML = months[++currentMonth] + ' ' + currentYear;
         let newMonBeg = new Date(currentYear, currentMonth, 1).getDay();
         let currentMonthDaysNum = new Date(currentYear, currentMonth + 1, 0);
 
         monthList(newMonBeg, 1, currentMonthDaysNum.getDate(), days)
-
+        switch (month.innerHTML) {
+            case "февраль":
+                container.style.background = "	rgba(102,0,204,0.3)";
+                break;
+            case "март":
+                container.style.background = "rgba(102,255,102,0.5)";
+                break;
+            case "апрель":
+                container.style.background = "rgba(102,255,0,0.5)";
+                break;
+            case "май":
+                container.style.background = "	rgba(204,255,0,0.5)";
+                break;
+            case "июнь":
+                container.style.background = "	rgba(255,153,51,0.5)";
+                break;
+            case "июль":
+                container.style.background = "rgba(255,102,0,0.8)";
+                break;
+            case "август":
+                container.style.background = "rgba(204,102,0,0.7)";
+                break;
+            case "сентябрь":
+                container.style.background = "rgba(153,51,0,0.5)";
+                break;
+            case "октябрь":
+                container.style.background = "rgba(153,0,0,0.5)";
+                break;
+            case "ноябрь":
+                container.style.background = "rgba(255,204,255,0.8)";
+                break;
+            case "декабрь":
+                container.style.background = "	rgba(204,0,204,0.3)";
+                break;
+            case "январь":
+                container.style.background = "rgba(153,0,204,0.5)	";
+                break;
+        }
     });
+
+
+
 
     //на предыдущие месяца
     prevMonth.addEventListener('click', function() {
@@ -99,27 +148,64 @@ function changeMonth(parent) {
 
         if (currentMonth == 0) {
             currentMonth = months.length;
-            monthYear.innerHTML = months[currentMonth] + ' ' + currentYear--;
-        }
+            month.innerHTML = months[currentMonth];
+            year.innerHTML = currentYear--;
 
-        monthYear.innerHTML = months[--currentMonth] + ' ' + currentYear;
+        }
+        month.innerHTML = months[--currentMonth];
+        year.innerHTML = currentYear;
+
         let prevMonBeg = new Date(currentYear, currentMonth, 1).getDay();
         let currentMonthDaysNum = new Date(currentYear, currentMonth + 1, 0);
 
-        monthList(prevMonBeg, 1, currentMonthDaysNum.getDate(), days)
+        monthList(prevMonBeg, 1, currentMonthDaysNum.getDate(), days);
+        switch (month.innerHTML) {
+            case "февраль":
+                container.style.background = "	rgba(102,0,204,0.3)";
+                break;
+            case "март":
+                container.style.background = "rgba(102,255,102,0.5)";
+                break;
+            case "апрель":
+                container.style.background = "rgba(102,255,0,0.5)";
+                break;
+            case "май":
+                container.style.background = "	rgba(204,255,0,0.5)";
+                break;
+            case "июнь":
+                container.style.background = "	rgba(255,153,51,0.5)";
+                break;
+            case "июль":
+                container.style.background = "rgba(255,102,0,0.8)";
+                break;
+            case "август":
+                container.style.background = "rgba(204,102,0,0.7)";
+                break;
+            case "сентябрь":
+                container.style.background = "rgba(153,51,0,0.5)";
+                break;
+            case "октябрь":
+                container.style.background = "rgba(153,0,0,0.5)";
+                break;
+            case "ноябрь":
+                container.style.background = "rgba(255,204,255,0.8)";
+                break;
+            case "декабрь":
+                container.style.background = "	rgba(204,0,204,0.3)";
+                break;
+            case "январь":
+                container.style.background = "rgba(153,0,204,0.5)	";
+                break;
+        }
     })
 
 }
 
 // показывает скрытые органайзеры
 function showChecklistToDayCell(elem) {
-    // hideAllChecklist();
+    hideAllChecklist();
     document.getElementById('ul' + elem.id).style.display = 'block';
 
-
-
-    // localStorage.getItem(str) = taskList.innerHTML;
-    // save(daytask)
 }
 
 // прячет ранее открытые органайзеры
@@ -143,6 +229,8 @@ function checklistStartUnique(elem) {
     ul.style.display = 'block';
     let input = document.createElement('input');
     input.type = ' text';
+    ul.appendChild(input);
+    checklistContainer.appendChild(ul);
     let add = document.createElement("button");
     ul.append(add);
     add.classList.add("add");
@@ -151,17 +239,16 @@ function checklistStartUnique(elem) {
     input.addEventListener('keyup', function(event) {
         if (event.keyCode == 13) {
             addLi(input, ul, tasks, elem);
-            input.textContent = "";
+            input.value = "";
         }
     });
     add.addEventListener("click", function() {
 
         addLi(input, ul, tasks, elem);
-        input.textContent = "";
+        input.value = "";
     })
 
-    ul.appendChild(input);
-    checklistContainer.appendChild(ul);
+
 
 }
 
@@ -195,6 +282,8 @@ function activateChecklistToDayCell(elem) {
     elem.addEventListener('click', function() {
         // let str = elem.id;
         // console.log(str);
+
+        elem.style.color = "red";
         let checklist = document.getElementById('ul' + elem.id);
         // localStorage['str'];
         if (!checklist) {
