@@ -132,7 +132,7 @@ function hideAllChecklist() {
     }
 
 }
-
+//форма для добавления заметок
 function checklistStartUnique(elem) {
     hideAllChecklist();
     let tasks = [];
@@ -164,8 +164,8 @@ function checklistStartUnique(elem) {
     checklistContainer.appendChild(ul);
 
 }
-let map = new Map();
 
+//добавление заметок + в local storage
 function addLi(input, ul, tasks, elem) {
     let taskList = document.createElement("li");
     taskList.classList.add("li")
@@ -190,7 +190,7 @@ function save(elem) {
 }
 
 
-
+//нажатие на день
 function activateChecklistToDayCell(elem) {
     elem.addEventListener('click', function() {
         // let str = elem.id;
