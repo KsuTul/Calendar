@@ -281,11 +281,22 @@ function activateChecklistToDayCell(elem) {
 
         if (!checklist) {
             checklistStartUnique(elem);
-        } else {
+        } //Вывод задач из локального хранилища
+        let dayTasks = document.querySelector('#checklistContainer');
+        let dayTasksWrap = document.createElement('ul');
+        dayTasksWrap.classList.add('tasksList');
+        dayTasks.appendChild(dayTasksWrap);
 
-            showChecklistToDayCell(elem);
+        let taskItem = document.createElement('li');
+        let taskObject = JSON.parse(localStorage.getItem(str));
 
+        for (let i = 0; i <= taskObject.length; i++) {
+            let taskItem = document.createElement('li');
+            let taskObject = JSON.parse(localStorage.getItem(str));
+            taskItem.textContent = taskObject[i];
+            dayTasksWrap.appendChild(taskItem);
         }
+
 
 
 

@@ -3,53 +3,53 @@
         margin: 0;
         padding: 0;
     }
-    
+
     .container {
         width: 1200px;
         height: 1000px;
         background-color: rgba(204, 255, 255, 0.3);
     }
-    
+
     .cal {
         margin-top: 50px;
         width: 700px;
         height: 600px;
         border: 1px solid lightblue;
     }
-    
+
     .tasks {
         margin-top: 50px;
         width: 400px;
         height: 600px;
     }
-    
+
     .monthYear {
         padding-top: 10px;
         padding-bottom: 20px;
     }
-    
+
     #month {
         padding-left: 210px;
         font-family: 'Lobster', cursive;
         font-size: 30px;
     }
-    
+
     #year {
         font-family: 'Lobster', cursive;
         font-size: 30px;
     }
-    
+
     .button {
         padding-top: 10px;
         padding-bottom: 20px;
     }
-    
+
     #arrowPrevMonth {
         padding-left: 100px;
         font-family: 'Lobster', cursive;
         font-size: 20px;
     }
-    
+
     #arrowNextMonth {
         font-family: 'Lobster', cursive;
         font-size: 20px;
@@ -57,11 +57,11 @@
     /* .Dates {
     display: flex;
 } */
-    
+
     .DaysWeek {
         display: flex;
     }
-    
+
     .whatDay {
         width: 15px;
         height: 20px;
@@ -70,11 +70,11 @@
         font-family: 'Lobster', cursive;
         font-size: 25px;
     }
-    
+
     .week {
         display: flex;
     }
-    
+
     .days {
         /* background-color: blueviolet; */
         width: 50px;
@@ -88,13 +88,13 @@
         font-family: 'Lobster', cursive;
         font-size: 18px;
     }
-    
+
     .days:hover {
         border: 1px solid #000;
         color: #fff;
         background: #3399FF;
     }
-    
+
     .checkList {
         display: none;
     }
@@ -106,23 +106,23 @@
     /* .days.weekend {
     color: red;
 } */
-    
+
     .taskList {
         display: flex;
     }
-    
+
     .checklistUl {
         display: flex;
         justify-content: space-around;
     }
-    
-    .li {
+
+    li {
         list-style: none;
         font-family: 'Lobster', cursive;
         font-size: 23px;
         padding-left: 95px;
     }
-    
+
     .add {
         background: transparent;
         margin-left: 15px;
